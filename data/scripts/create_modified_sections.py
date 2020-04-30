@@ -264,7 +264,7 @@ tip = curve.point(numpy.argmin(curve.y))
 tip_idx = snake.find_index(tip)
 # Decision: lip starts at 15% of the chord length from the tip
 # along the upper surface.
-target_length = 0.15 * chord
+target_length = 0.25 * chord
 curve1, index1 = truncate_curve(snake, tip, target_length, reverse=True)
 # Decision: lip ends at 25% of the chord length from the tip
 # along the lower surface.
@@ -287,9 +287,9 @@ tip_idx = snake.find_index(tip)
 # along the lower surface.
 target_length = 0.25 * chord
 curve3, index3 = truncate_curve(snake, tip, target_length, reverse=True)
-# Decision: lip ends at 15% of the chord length from the tip
+# Decision: lip ends at 25% of the chord length from the tip
 # along the upper surface.
-target_length = 0.15 * chord
+target_length = 0.25 * chord
 curve4, index4 = truncate_curve(snake, tip, target_length)
 # Grab the back lip and reshape it.
 back = curve3.append(curve4)
