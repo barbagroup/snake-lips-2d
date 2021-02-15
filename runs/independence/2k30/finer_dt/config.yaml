@@ -1,0 +1,102 @@
+# 1803x1234 (2224902)
+mesh:
+- direction: x
+  start: -15.0
+  subDomains:
+  - cells: 165
+    end: -1.8
+    stretchRatio: 1.0
+  - cells: 25
+    end: -1.0
+    stretchRatio: 0.9090909091
+  - cells: 44
+    end: -0.648
+    stretchRatio: 1.0
+  - cells: 8
+    end: -0.6
+    stretchRatio: 0.9090909091
+  - cells: 450
+    end: 1.2
+    stretchRatio: 1.0
+  - cells: 71
+    end: 1.608
+    stretchRatio: 1.01
+  - cells: 674
+    end: 7.0
+    stretchRatio: 1.0
+  - cells: 232
+    end: 14.28
+    stretchRatio: 1.01
+  - cells: 134
+    end: 25.0
+    stretchRatio: 1.0
+- direction: y
+  start: -15.0
+  subDomains:
+  - cells: 140
+    end: -3.8
+    stretchRatio: 1.0
+  - cells: 25
+    end: -3.0
+    stretchRatio: 0.9090909091
+  - cells: 294
+    end: -0.648
+    stretchRatio: 1.0
+  - cells: 8
+    end: -0.6
+    stretchRatio: 0.9090909091
+  - cells: 300
+    end: 0.6
+    stretchRatio: 1.0
+  - cells: 8
+    end: 0.648
+    stretchRatio: 1.1
+  - cells: 294
+    end: 3.0
+    stretchRatio: 1.0
+  - cells: 25
+    end: 3.8
+    stretchRatio: 1.1
+  - cells: 140
+    end: 15.0
+    stretchRatio: 1.0
+
+flow:
+  nu: 5e-4
+  initialVelocity: [1.0, 0.0]
+  boundaryConditions:
+  - location: xMinus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+  - location: xPlus
+    u: [CONVECTIVE, 1.0]
+    v: [CONVECTIVE, 1.0]
+  - location: yMinus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+  - location: yPlus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+
+parameters:
+  dt: 0.0002
+  startStep: 0
+  nt: 400000
+  nsave: 10000
+  nrestart: 40000
+  convection: ADAMS_BASHFORTH_2
+  diffusion: CRANK_NICOLSON
+  velocitySolver:
+    type: CPU
+    config: config/velocity_solver.info
+  poissonSolver:
+    type: GPU
+    config: config/poisson_solver.info
+  forcesSolver:
+    type: CPU
+    config: config/forces_solver.info
+
+bodies:
+- type: points
+  name: snake
+  file: snake.body
