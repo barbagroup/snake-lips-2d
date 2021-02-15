@@ -1,0 +1,16 @@
+pool_specification:
+  id: pool-front-2k35
+  vm_configuration:
+    platform_image:
+      publisher: Canonical
+      offer: UbuntuServer
+      sku: 16.04-LTS
+      native: true
+  vm_size: STANDARD_NC12
+  vm_count:
+    dedicated: 1
+    low_priority: 0
+  resize_timeout: 00:30:00
+  inter_node_communication_enabled: true
+  ssh:
+    username: shipyard
