@@ -1,0 +1,28 @@
+job_specifications:
+- id: job-back-1k15
+  auto_complete: true
+  auto_pool:
+    keep_alive: false
+    pool_lifetime: job
+  max_task_retries: 1
+  max_wall_time: 1.00:00:00
+  retention_time: 2.00:00:00
+  shm_size: 256m
+  allow_run_on_missing_image: false
+  remove_container_after_exit: true
+  shared_data_volumes:
+  - azurefile_vol
+  tasks:
+  - docker_image: barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+    multi_instance:
+      num_instances: pool_specification_vm_count_dedicated
+      pre_execution_command: export simudir=$AZ_BATCH_NODE_SHARED_DIR/azfile/snake2d/Re1000/back_lip/1k15; cp -r $simudir/* $AZ_BATCH_TASK_WORKING_DIR
+      mpi:
+        runtime: openmpi
+        processes_per_node: 12
+        options:
+        - --allow-run-as-root
+        - --mca btl_vader_single_copy_mechanism none
+        - -host $AZ_BATCH_HOST_LIST
+        - -x CUDA_VISIBLE_DEVICES=0,1
+    command: petibm-decoupledibpm -probes probes.yaml -options_left -log_view ascii:output/view.log; cp -r output $simudir; cp $AZ_BATCH_TASK_DIR/stdout.txt $AZ_BATCH_TASK_DIR/stderr.txt $simudir/output
