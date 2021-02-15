@@ -1,2 +1,11 @@
 # Ignore configuration for VSCode
 .vscode
+
+**/config_shipyard/credentials.yaml
+log_shipyard
+
+figures
+output
+snake.body
+
+tmp
