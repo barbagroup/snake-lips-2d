@@ -24,7 +24,7 @@ cd_all = data['Cd']
 cl_all = data['Cl']
 
 ratio_all = dict()
-sections = list(cd_all.keys())
+sections = ['both lips', 'front lip', 'back lip', 'no lips']
 for section in sections:
     ratio_all[section] = [cl / cd
                           for cl, cd in zip(cl_all[section], cd_all[section])]
@@ -34,8 +34,8 @@ print('[INFO] Plotting drag coefficient vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Drag coefficient')
-for label, values in cd_all.items():
-    ax.plot(angles, values, label=label, marker='o')
+for section in sections:
+    ax.plot(angles, cd_all[section], label=section, marker='o')
 ax.set_ylim(0.4, 1.8)
 ax.legend(loc='upper left', frameon=False)
 ax.spines['right'].set_visible(False)
@@ -54,8 +54,8 @@ print('[INFO] Plotting lift coefficient vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Lift coefficient')
-for label, values in cl_all.items():
-    ax.plot(angles, values, label=label, marker='o')
+for section in sections:
+    ax.plot(angles, cl_all[section], label=section, marker='o')
 ax.set_ylim(0.2, 2.1)
 ax.legend(loc='upper left', frameon=False)
 ax.spines['right'].set_visible(False)
@@ -72,8 +72,8 @@ print('[INFO] Plotting lift/drag ratio vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Lift/Drag ratio')
-for label, values in ratio_all.items():
-    ax.plot(angles, values, label=label, marker='o')
+for section in sections:
+    ax.plot(angles, ratio_all[section], label=section, marker='o')
 ax.set_ylim(0.5, 1.9)
 ax.legend(loc='lower right', frameon=False)
 ax.spines['right'].set_visible(False)
