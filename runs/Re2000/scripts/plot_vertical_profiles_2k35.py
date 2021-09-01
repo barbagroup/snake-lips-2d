@@ -1,9 +1,10 @@
 """Plot vertical profiles of the velocity components and pressure."""
 
-import h5py
-from matplotlib import pyplot
-import numpy
 import pathlib
+
+import h5py
+import numpy
+from matplotlib import pyplot
 
 import petibmpy
 
@@ -53,24 +54,40 @@ def get_time_averaged_profiles(simudir, name, xlocs,
 
 # Set parameters.
 maindir = pathlib.Path(__file__).absolute().parents[1]
-xlocs = [0.5, 1.0, 2.0, 3.0, 4.0, 5.0]
+xlocs = [0.5, 1.0, 2.0]
 
 # Initialize data structures to store solution of profiles.
 u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 # Initialize dict to store keyword arguments for pyplot.plot.
 plot_kwargs = dict()
 
-# Get vertical profiles for solution on base grid.
-label = '[-15, 25]x[-15, 15]'
-simudir = maindir / 'base'
+# Get vertical profiles for solution on nominal grid.
+label = 'both'
+simudir = maindir / 'both_lips' / '2k35'
+u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
+v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
+p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
+plot_kwargs[label] = dict(color='black', linestyle='-')
+
+# Get vertical profiles for solution on coarser grid in space.
+label = 'front'
+simudir = maindir / 'front_lip' / '2k35'
+u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
+v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
+p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
+plot_kwargs[label] = dict(color='gray', linestyle='-')
+
+# Get vertical profiles for solution on finer grid in space.
+label = 'back'
+simudir = maindir / 'back_lip' / '2k35'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C0', linestyle='-')
 
-# Get vertical profiles for solution on grid covering larger domain.
-label = '[-20, 35]x[-20, 20]'
-simudir = maindir / 'larger_domain'
+# Get vertical profiles for solution on nominal grid with smaller dt.
+label = 'none'
+simudir = maindir / 'no_lips' / '2k35'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
@@ -97,16 +114,18 @@ for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
             label = None
     ax.legend(frameon=False, loc='upper left', prop=dict(size=10))
     ax.axis('scaled', adjustable='box')
-    ax.axis((-2.0, 6.0, -3.0, 3.0))
+    ax.axis((-2.0, 2.1, -2.0, 2.0))
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
     fig.tight_layout()
     # Add immersed body to the plot.
-    filepath = maindir / 'base' / 'snake.body'
+    filepath = maindir / 'both_lips' / '2k35' / 'snake.body'
     body = petibmpy.read_body(filepath, skiprows=1)
     ax.fill(*body, color='black', alpha=0.5)
     # Save figure as PNG.
     figdir = maindir / 'figures'
     figdir.mkdir(parents=True, exist_ok=True)
-    filepath = figdir / f'{name}_profiles_compare_domain.png'
+    filepath = figdir / f'{name}_profiles_2k35.png'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')
 
 pyplot.show()

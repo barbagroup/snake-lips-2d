@@ -10,7 +10,7 @@ import petibmpy
 maindir = pathlib.Path(__file__).absolute().parents[1]
 
 sections = ['both_lips', 'front_lip', 'back_lip', 'no_lips']
-angles = [15, 20, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+angles = [15, 20, 25, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45]
 Re = 1000  # Reynolds number
 limits = (50.0, 80.0)  # time-limits use for averaging force coefficients
 
