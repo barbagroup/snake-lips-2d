@@ -1,4 +1,4 @@
-# Figures
+# Figures and Tables
 
 ## Grid-independence study
 
@@ -18,7 +18,7 @@
 
 | p | u | v |
 |:-:|:-:|:-:|
-| ![](independence/2k30/figures/p_profiles_compare_dx_dt.png) | ![](independence/2k30/figures/u_profiles_compare_dx_dt.png) | ![](independence/2k30/figures/v_profiles_compare_dx_dt.png) |
+| ![](runs/independence/2k30/figures/p_profiles_compare_dx_dt.png) | ![](runs/independence/2k30/figures/u_profiles_compare_dx_dt.png) | ![](runs/independence/2k30/figures/v_profiles_compare_dx_dt.png) |
 
 ---
 
@@ -38,7 +38,7 @@
 
 | p | u | v |
 |:-:|:-:|:-:|
-| ![](independence/2k35/figures/p_profiles_compare_dx_dt.png) | ![](independence/2k35/figures/u_profiles_compare_dx_dt.png) | ![](independence/2k35/figures/v_profiles_compare_dx_dt.png) |
+| ![](runs/independence/2k35/figures/p_profiles_compare_dx_dt.png) | ![](runs/independence/2k35/figures/u_profiles_compare_dx_dt.png) | ![](runs/independence/2k35/figures/v_profiles_compare_dx_dt.png) |
 
 ---
 
@@ -56,7 +56,7 @@
 
 | p | u | v |
 |:-:|:-:|:-:|
-| ![](independence/2k35-nolips/figures/p_profiles_compare_dx_dt.png) | ![](independence/2k35-nolips/figures/u_profiles_compare_dx_dt.png) | ![](independence/2k35-nolips/figures/v_profiles_compare_dx_dt.png) |
+| ![](runs/independence/2k35-nolips/figures/p_profiles_compare_dx_dt.png) | ![](runs/independence/2k35-nolips/figures/u_profiles_compare_dx_dt.png) | ![](runs/independence/2k35-nolips/figures/v_profiles_compare_dx_dt.png) |
 
 ---
 
@@ -64,8 +64,8 @@
 
 |  |  |
 |:-:|:-:|
-| ![](Re1000/figures/avg_drag_coefficients_vs_aoa.png) | ![](Re2000/figures/avg_drag_coefficients_vs_aoa.png) |
-| ![](Re1000/figures/avg_lift_coefficients_vs_aoa.png) | ![](Re2000/figures/avg_lift_coefficients_vs_aoa.png) |
+| ![](runs/Re1000/figures/avg_drag_coefficients_vs_aoa.png) | ![](runs/Re2000/figures/avg_drag_coefficients_vs_aoa.png) |
+| ![](runs/Re1000/figures/avg_lift_coefficients_vs_aoa.png) | ![](runs/Re2000/figures/avg_lift_coefficients_vs_aoa.png) |
 
 **Figure:** Time-averaged drag (top) and lift (bottom) coefficients at Reynolds numbers $1000$ and $2000$ versus the angle of attack of a snake cross-section with both lips, only the front lip or the back lip, and no lips. All averages are computed between 50 and 80 non-dimensional time units of flow simulation.
 
@@ -73,7 +73,7 @@
 
 |  |  |
 |:-:|:-:|
-| ![](Re1000/figures/avg_lift_drag_ratio_vs_aoa.png) | ![](Re2000/figures/avg_lift_drag_ratio_vs_aoa.png) |
+| ![](runs/Re1000/figures/avg_lift_drag_ratio_vs_aoa.png) | ![](runs/Re2000/figures/avg_lift_drag_ratio_vs_aoa.png) |
 
 **Figure:** Time-averaged lift-to-drag ratio at Reynolds numbers $1000$ and $2000$ versus the angle of attack of a snake cross-section with both lips, only the front lip or the back lip, and no lips. All averages are computed between 50 and 80 non-dimensional time units of flow simulation.
 
@@ -81,13 +81,13 @@
 
 | p | u | v |
 |:-:|:-:|:-:|
-| ![](Re2000/figures/p_profiles_2k35.png) | ![](Re2000/figures/u_profiles_2k35.png) | ![](Re2000/figures/v_profiles_2k35.png) |
+| ![](runs/Re2000/figures/p_profiles_2k35.png) | ![](runs/Re2000/figures/u_profiles_2k35.png) | ![](runs/Re2000/figures/v_profiles_2k35.png) |
 
 **Figure:** Time-averaged vertical profiles of the pressure and velocity components in the near wake of the body. Comparing the four cross-sections at a 35-degree angle of attack at Reynolds number 2000.
 
 ---
 
-![](Re2000/figures/surface_pressure_2k35.png)
+![](runs/Re2000/figures/surface_pressure_2k35.png)
 
 **Figure:** Time-averaged pressure along the surface for the four cross-sections with a 35-degree angle of attack and at Reynolds number 2000.
 
@@ -95,8 +95,8 @@
 
 |  |  |
 |:-:|:-:|
-| ![](Re2000/both_lips/figures/surface_pressure.png) | ![](Re2000/front_lip/figures/surface_pressure.png) |
-| ![](Re2000/back_lip/figures/surface_pressure.png) | ![](Re2000/no_lips/figures/surface_pressure.png) |
+| ![](runs/Re2000/both_lips/figures/surface_pressure.png) | ![](runs/Re2000/front_lip/figures/surface_pressure.png) |
+| ![](runs/Re2000/back_lip/figures/surface_pressure.png) | ![](runs/Re2000/no_lips/figures/surface_pressure.png) |
 
 **Figure:** Time-averaged surface pressure profiles at Reynolds number 2000 for the section with both lips (top left), with only the front lip (top right) or the back lip (bottom left), and with no lip (bottom right).
 
@@ -104,7 +104,7 @@
 
 |  |  |
 |:-:|:-:|
-| ![](Re2000/both_lips/2k35/figures/vorticity.gif) | ![](Re2000/front_lip/2k35/figures/vorticity.gif) |
-| ![](Re2000/back_lip/2k35/figures/vorticity.gif) | ![](Re2000/no_lips/2k35/figures/vorticity.gif) |
+| ![](runs/Re2000/both_lips/2k35/figures/vorticity.gif) | ![](runs/Re2000/front_lip/2k35/figures/vorticity.gif) |
+| ![](runs/Re2000/back_lip/2k35/figures/vorticity.gif) | ![](runs/Re2000/no_lips/2k35/figures/vorticity.gif) |
 
 **Figure:** Filled contours of the vorticity field at every non-dimensional time unit of flow simulation for a cross-section with a 35-degree angle of attack and at Reynolds number 2000. Top left: both lips; top right: front lip; bottom left: back lip; bottom right: no lips.
