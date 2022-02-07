@@ -2,7 +2,7 @@
 
 ## Introduction
 
-![](data/figures/modified_sections_aoa35.pdf)
+![](data/figures/modified_sections_aoa35.png)
 
 **Figure:** Modified profiles of the snake during the gliding phase. From left to right: (1) original profile, (2) with the back lip, (3) missing the front lip, and (4) missing both lips.
 
