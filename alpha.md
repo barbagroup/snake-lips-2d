@@ -1,5 +1,11 @@
 # Figures and Tables
 
+## Introduction
+
+![](data/figures/modified_sections_aoa35.pdf)
+
+**Figure:** Modified profiles of the snake during the gliding phase. From left to right: (1) original profile, (2) with the back lip, (3) missing the front lip, and (4) missing both lips.
+
 ## Grid-independence study
 
 **Table:** Mean and RMS of the drag and lift coefficient for a snake cross-section with both lips and $AoA = 30^o$ at $Re = 2000$. Statistics are computed between 50 and 80 non-dimensional time units of flow simulation.
