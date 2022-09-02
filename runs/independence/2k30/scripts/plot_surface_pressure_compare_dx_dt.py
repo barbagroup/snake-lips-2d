@@ -106,7 +106,7 @@ ax.spines['top'].set_visible(False)
 fig.tight_layout()
 
 # Save the Matplotlib figure as PNG.
-figdir = simudir / 'figures'
+figdir = maindir / 'figures'
 figdir.mkdir(parents=True, exist_ok=True)
 filepath = figdir / 'surface_pressure_compare_dx_dt.png'
 fig.savefig(filepath, dpi=300, bbox_inches='tight')
