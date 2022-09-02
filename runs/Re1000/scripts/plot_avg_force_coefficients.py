@@ -33,12 +33,14 @@ for section in sections:
 # Plot time-averaged drag coefficient versus angle of attack.
 print('[INFO] Plotting drag coefficient vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
+ax.grid(axis='x', color='gray', linewidth=0.5, linestyle=':')
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Drag coefficient')
 for section, label in zip(sections, labels):
     ax.plot(angles, cd_all[section], label=label, marker='o')
 ax.set_ylim(0.2, 2.1)
-ax.legend(loc='upper left', frameon=False)
+ax.legend(loc='upper left', frameon=True,
+          framealpha=1.0, edgecolor='white', borderaxespad=0.1)
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 fig.tight_layout()
@@ -53,12 +55,14 @@ if save_figures:
 # Plot time-averaged lift coefficient versus angle of attack.
 print('[INFO] Plotting lift coefficient vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
+ax.grid(axis='x', color='gray', linewidth=0.5, linestyle=':')
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Lift coefficient')
 for section, label in zip(sections, labels):
     ax.plot(angles, cl_all[section], label=label, marker='o')
 ax.set_ylim(0.2, 2.1)
-ax.legend(loc='upper left', frameon=False)
+ax.legend(loc='upper left', frameon=True,
+          framealpha=1.0, edgecolor='white', borderaxespad=0.1)
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 fig.tight_layout()
@@ -71,12 +75,14 @@ if save_figures:
 # Plot time-averaged lift/drag ratio versus angle of attack.
 print('[INFO] Plotting lift/drag ratio vs. angle ...')
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
+ax.grid(axis='x', color='gray', linewidth=0.5, linestyle=':')
 ax.set_xlabel('Angle of attack ($^o$)')
 ax.set_ylabel('Lift/Drag ratio')
 for section, label in zip(sections, labels):
     ax.plot(angles, ratio_all[section], label=label, marker='o')
 ax.set_ylim(0.5, 1.9)
-ax.legend(loc='lower center', frameon=False)
+ax.legend(loc='lower center', frameon=True,
+          framealpha=1.0, edgecolor='white', borderaxespad=0.1)
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 fig.tight_layout()
