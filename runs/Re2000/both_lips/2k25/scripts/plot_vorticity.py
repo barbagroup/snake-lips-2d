@@ -39,7 +39,7 @@ for timestep in timesteps:
     ax.set_xlabel('x/c')
     ax.set_ylabel('y/c')
     ax.contourf(*grid, wz, levels=levels, extend='both')
-    ax.plot(*body, color='black', linewidth=0.5)
+    ax.fill(*body, color='gray')
     ax.axis('scaled', adjustable='box')
     ax.set_xlim(-1.0, 4.0)
     ax.set_ylim(-1.5, 1.5)
