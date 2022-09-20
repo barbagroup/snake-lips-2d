@@ -41,7 +41,7 @@ plot_kwargs = dict()
 time_limits = (50.0, 80.0)
 
 # Load solution obtained on nominal grid (dx=0.004, dt=0.0004).
-label = 'Nominal'
+label = 'Base'
 simudir = maindir / 'base'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)

@@ -58,8 +58,8 @@ maindir = pathlib.Path(__file__).absolute().parents[1]
 data = dict()
 plot_kwargs = dict()
 
-# Compute surface pressure on nominal grid.
-label = 'Nominal'
+# Compute surface pressure on base grid.
+label = 'Base'
 simudir = maindir / 'base'
 data[label] = get_surface_pressure(simudir)
 plot_kwargs[label] = dict(color='black', linestyle='-')

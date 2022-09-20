@@ -61,7 +61,7 @@ u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 plot_kwargs = dict()
 
 # Get vertical profiles for solution on nominal grid.
-label = 'Nominal'
+label = 'Base'
 simudir = maindir / 'base'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)

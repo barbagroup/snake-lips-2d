@@ -58,8 +58,8 @@ maindir = pathlib.Path(__file__).absolute().parents[1]
 data = dict()
 plot_kwargs = dict()
 
-# Compute surface pressure on nominal grid.
-label = 'Nominal'
+# Compute surface pressure on base grid.
+label = 'Base'
 simudir = maindir / 'base'
 data[label] = get_surface_pressure(simudir)
 plot_kwargs[label] = dict(color='black', linestyle='-')
@@ -87,7 +87,7 @@ filepath = maindir / 'data' / 'krishnan_et_al_2014_surface_pressure_2k30.txt'
 with open(filepath, 'r') as infile:
     pk, xk, yk = numpy.loadtxt(infile, usecols=(0, 2, 3), unpack=True)
 # Displace x-coordinates to align with us.
-x, _ = data['Nominal']
+x, _ = data['Base']
 xk += abs(xk.min()) - abs(x.min())
 
 # Plot the surface pressure.

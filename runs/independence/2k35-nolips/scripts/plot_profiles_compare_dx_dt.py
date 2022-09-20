@@ -60,8 +60,8 @@ u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 # Initialize dict to store keyword arguments for pyplot.plot.
 plot_kwargs = dict()
 
-# Get vertical profiles for solution on nominal grid.
-label = 'Nominal'
+# Get vertical profiles for solution on base grid.
+label = 'Base'
 simudir = maindir / 'base'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
@@ -84,7 +84,7 @@ v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C0', linestyle='-')
 
-# Get vertical profiles for solution on nominal grid with smaller dt.
+# Get vertical profiles for solution on base grid with smaller dt.
 label = 'Finer in time'
 simudir = maindir / 'finer_grid'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
