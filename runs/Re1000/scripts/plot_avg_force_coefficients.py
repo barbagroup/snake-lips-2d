@@ -25,7 +25,7 @@ cl_all = data['Cl']
 
 ratio_all = dict()
 sections = ['both lips', 'front lip', 'back lip', 'no lips']
-labels = ['both', 'front', 'back', 'none']
+labels = ['Both', 'Front', 'Back', 'None']
 for section in sections:
     ratio_all[section] = [cl / cd
                           for cl, cd in zip(cl_all[section], cd_all[section])]

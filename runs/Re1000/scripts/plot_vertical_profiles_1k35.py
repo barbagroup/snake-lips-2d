@@ -61,37 +61,37 @@ u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 # Initialize dict to store keyword arguments for pyplot.plot.
 plot_kwargs = dict()
 
-# Get vertical profiles for solution on nominal grid.
-label = 'both'
+# Get vertical profiles for section with both lips.
+label = 'Both'
 simudir = maindir / 'both_lips' / '1k35'
-u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
-v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='black', linestyle='-')
-
-# Get vertical profiles for solution on coarser grid in space.
-label = 'front'
-simudir = maindir / 'front_lip' / '1k35'
-u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
-v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='gray', linestyle='-')
-
-# Get vertical profiles for solution on finer grid in space.
-label = 'back'
-simudir = maindir / 'back_lip' / '1k35'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C0', linestyle='-')
 
-# Get vertical profiles for solution on nominal grid with smaller dt.
-label = 'none'
+# Get vertical profiles for section with front lip only.
+label = 'Front'
+simudir = maindir / 'front_lip' / '1k35'
+u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
+v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
+p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
+plot_kwargs[label] = dict(color='C1', linestyle='-')
+
+# Get vertical profiles for section with back lip only.
+label = 'Back'
+simudir = maindir / 'back_lip' / '1k35'
+u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
+v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
+p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
+plot_kwargs[label] = dict(color='C2', linestyle='-')
+
+# Get vertical profiles for section with no lips.
+label = 'None'
 simudir = maindir / 'no_lips' / '1k35'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C3', linestyle='-')
 
 # Set default font family and size for Matplotlib figures.
 pyplot.rc('font', family='serif', size=12)
@@ -99,8 +99,8 @@ pyplot.rc('font', family='serif', size=12)
 # Plot vertical profiles of the velocity components and pressure.
 for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
     fig, ax = pyplot.subplots(figsize=(6.0, 5.0))
-    ax.set_xlabel('x/c')
-    ax.set_ylabel('y/c')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
     # Add guide lines.
     for xloc in xlocs:
         ax.axvline(xloc, color='gray', linestyle=':')

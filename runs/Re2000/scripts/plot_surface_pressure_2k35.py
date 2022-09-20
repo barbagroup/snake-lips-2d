@@ -54,7 +54,7 @@ def get_surface_pressure(simudir):
 # Set directories.
 maindir = pathlib.Path(__file__).absolute().parents[1]
 folders = ['both_lips/2k35', 'front_lip/2k35', 'back_lip/2k35', 'no_lips/2k35']
-labels = ['both', 'front', 'back', 'none']
+labels = ['Both', 'Front', 'Back', 'None']
 
 data = dict()
 for folder, label in zip(folders, labels):
@@ -71,7 +71,7 @@ xk += abs(xk.min()) - abs(x.min())
 # Plot the surface pressure.
 pyplot.rc('font', family='serif', size=14)
 fig, ax = pyplot.subplots(figsize=(6.0, 4.0))
-ax.set_xlabel('x/c')
+ax.set_xlabel('x-coordinate')
 ax.set_ylabel('Surface pressure')
 for label, (x, p) in data.items():
     ax.plot(x, p, label=label)

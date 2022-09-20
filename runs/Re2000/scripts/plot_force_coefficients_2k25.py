@@ -41,36 +41,36 @@ plot_kwargs = dict()
 time_limits = (50.0, 80.0)
 
 # Load solution for geometry with both lips.
-label = 'both'
+label = 'Both'
 simudir = maindir / 'both_lips' / '2k25'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C0', linestyle='-', linewidth=0.8)
+plot_kwargs[label] = dict(color='C0', linestyle='-', linewidth=1.0)
 
 # Load solution for geometry with front lip only.
-label = 'front'
+label = 'Front'
 simudir = maindir / 'front_lip' / '2k25'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C1', linestyle='-', linewidth=0.8)
+plot_kwargs[label] = dict(color='C1', linestyle='-', linewidth=1.0)
 
 # Load solution for geometry with back lip only.
-label = 'back'
+label = 'Back'
 simudir = maindir / 'back_lip' / '2k25'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C2', linestyle='-', linewidth=0.8)
+plot_kwargs[label] = dict(color='C2', linestyle='-', linewidth=1.0)
 
 # Load solution for geometry with no lips.
-label = 'none'
+label = 'None'
 simudir = maindir / 'no_lips' / '2k25'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C3', linestyle='-', linewidth=0.8)
+plot_kwargs[label] = dict(color='C3', linestyle='-', linewidth=1.0)
 
 # Print mean quantities.
 print('Case\tTime-limits\t<C_D>\t<C_L>')

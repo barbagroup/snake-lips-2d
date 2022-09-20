@@ -98,8 +98,8 @@ pyplot.rc('font', family='serif', size=12)
 # Plot vertical profiles of the velocity components and pressure.
 for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
     fig, ax = pyplot.subplots(figsize=(6.0, 5.0))
-    ax.set_xlabel('x/c')
-    ax.set_ylabel('y/c')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
     # Add guide lines.
     for xloc in xlocs:
         ax.axvline(xloc, color='gray', linestyle=':')

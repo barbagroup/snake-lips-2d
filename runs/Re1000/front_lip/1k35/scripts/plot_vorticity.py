@@ -36,8 +36,8 @@ for timestep in timesteps:
 
     fig, ax = pyplot.subplots(figsize=(5.0, 3.0))
     ax.text(-0.5, 1.0, f't = {timestep * dt:.1f}')
-    ax.set_xlabel('x/c')
-    ax.set_ylabel('y/c')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
     ax.contourf(*grid, wz, levels=levels, extend='both')
     ax.fill(*body, color='gray')
     ax.axis('scaled', adjustable='box')
