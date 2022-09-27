@@ -75,6 +75,8 @@ ax.set_xlabel('x-coordinate')
 ax.set_ylabel('Surface pressure')
 for label, (x, p) in data.items():
     ax.plot(x, p, label=label)
+    i = numpy.argmin(p)
+    print(f'{label}: minimum pressure value {p[i]:0.2f} reached at x={x[i]:0.2f}')
 ax.plot(xk, pk, color='black', linestyle='--',
         label='Krishnan et al. (2014)')
 ax.legend(frameon=False, ncol=2, prop=dict(size=10))

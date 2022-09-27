@@ -1,4 +1,4 @@
-"""Plot vertical profiles of the velocity components and pressure."""
+"""Plot vertical profiles of the velocity components."""
 
 import pathlib
 
@@ -55,6 +55,7 @@ def get_time_averaged_profiles(simudir, name, xlocs,
 # Set parameters.
 maindir = pathlib.Path(__file__).absolute().parents[1]
 xlocs = [0.5, 1.0, 2.0]
+case = '1k25'
 
 # Initialize data structures to store solution of profiles.
 u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
@@ -63,69 +64,71 @@ plot_kwargs = dict()
 
 # Get vertical profiles for section with both lips.
 label = 'Both'
-simudir = maindir / 'both_lips' / '1k25'
+simudir = maindir / 'both_lips' / case
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C0', linestyle='-')
 
 # Get vertical profiles for section with front lip only.
 label = 'Front'
-simudir = maindir / 'front_lip' / '1k25'
+simudir = maindir / 'front_lip' / case
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C1', linestyle='-')
 
 # Get vertical profiles for section with back lip only.
 label = 'Back'
-simudir = maindir / 'back_lip' / '1k25'
+simudir = maindir / 'back_lip' / case
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C2', linestyle='-')
 
 # Get vertical profiles for section with no lips.
 label = 'None'
-simudir = maindir / 'no_lips' / '1k25'
+simudir = maindir / 'no_lips' / case
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C3', linestyle='-')
 
 # Set default font family and size for Matplotlib figures.
 pyplot.rc('font', family='serif', size=12)
 
-# Plot vertical profiles of the velocity components and pressure.
-for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
+# Plot vertical profiles of the velocity components.
+for component in ('u', 'v'):
     fig, ax = pyplot.subplots(figsize=(6.0, 5.0))
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
+    ax.set_xlabel('$x/c$')
+    ax.set_ylabel('$y/c$')
     # Add guide lines.
-    for xloc in xlocs:
-        ax.axvline(xloc, color='gray', linestyle=':')
+    ax.vlines(xlocs, -2.0, 2.0, color='gray', linestyle=':')
     # Add vertical profiles at x locations.
-    var_profiles = eval(name + '_profiles')
-    for i, (label, profiles) in enumerate(var_profiles.items()):
+    comp_profiles = eval(component + '_profiles')
+    for label, profiles in comp_profiles.items():
         kwargs = plot_kwargs[label]
         for xloc, profile in profiles.items():
-            ax.plot(xloc + profile['vals'] + x_offset, profile['y'],
-                    label=label, **kwargs)
+            if component == 'u':
+                y, u = profile['y'], profile['vals']
+                ax.plot(xloc + u - 1.0, y, label=label, **kwargs)
+                text_content = '$<u> / U_\infty - 1$'
+            else:  # v component
+                y, v = profile['y'], profile['vals']
+                ax.plot(xloc + v, y, label=label, **kwargs)
+                text_content = '$<v> / U_\infty$'
             label = None
-    ax.legend(frameon=False, loc='upper left', prop=dict(size=10))
     ax.axis('scaled', adjustable='box')
-    ax.axis((-2.0, 2.1, -2.0, 2.0))
+    ax.axis((-2.0, 2.2, -2.0, 2.0))
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
+    ax.legend(frameon=False, loc='upper left', fontsize=12)
+    ax.text(-1.8, -1.8, text_content, fontsize=14)
     fig.tight_layout()
     # Add immersed body to the plot.
-    filepath = maindir / 'both_lips' / '1k25' / 'snake.body'
+    filepath = maindir / 'both_lips' / case / 'snake.body'
     body = petibmpy.read_body(filepath, skiprows=1)
     ax.fill(*body, color='black', alpha=0.5)
     # Save figure as PNG.
     figdir = maindir / 'figures'
     figdir.mkdir(parents=True, exist_ok=True)
-    filepath = figdir / f'{name}_profiles_1k25.png'
+    filepath = figdir / f'{component}_profiles_{case}.png'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')
 
 pyplot.show()
