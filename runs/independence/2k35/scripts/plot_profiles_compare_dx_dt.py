@@ -68,14 +68,6 @@ v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='black', linestyle='-')
 
-# Get vertical profiles for solution on coarser grid in space.
-label = 'Coarser in space'
-simudir = maindir / 'coarser_grid'
-u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
-v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='gray', linestyle='-')
-
 # Get vertical profiles for solution on finer grid in space.
 label = 'Finer in space'
 simudir = maindir / 'finer_grid'
@@ -86,7 +78,7 @@ plot_kwargs[label] = dict(color='C0', linestyle='-')
 
 # Get vertical profiles for solution on base grid with smaller dt.
 label = 'Finer in time'
-simudir = maindir / 'finer_grid'
+simudir = maindir / 'finer_dt'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
@@ -98,8 +90,8 @@ pyplot.rc('font', family='serif', size=12)
 # Plot vertical profiles of the velocity components and pressure.
 for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
     fig, ax = pyplot.subplots(figsize=(6.0, 5.0))
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
+    ax.set_xlabel('$x/c$')
+    ax.set_ylabel('$y/c$')
     # Add guide lines.
     for xloc in xlocs:
         ax.axvline(xloc, color='gray', linestyle=':')
