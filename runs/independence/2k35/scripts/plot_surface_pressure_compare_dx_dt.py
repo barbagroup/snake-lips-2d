@@ -67,13 +67,13 @@ plot_kwargs[label] = dict(color='black', linestyle='-')
 label = 'Finer in time'
 simudir = maindir / 'finer_dt'
 data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C0', linestyle='-')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
 
 # Compute surface pressure on finer grid in space.
 label = 'Finer in space'
 simudir = maindir / 'finer_grid'
 data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
 
 # Compute surface pressure on coarser grid in space.
 # label = 'Coarser in space'
@@ -96,7 +96,7 @@ ax.set_xlabel('x-coordinate')
 ax.set_ylabel('Surface pressure')
 for label, (x, p) in data.items():
     ax.plot(x, p, label=label, **plot_kwargs[label])
-ax.plot(xk, pk, color='black', linestyle='--',
+ax.plot(xk, pk, color='gray', linestyle='-', linewidth=0.75,
         label='Krishnan et al. (2014)')
 ax.legend(frameon=False)
 ax.axis((-0.6, 0.6, -2.0, 1.5))

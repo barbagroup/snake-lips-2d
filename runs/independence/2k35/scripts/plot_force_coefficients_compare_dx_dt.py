@@ -62,7 +62,7 @@ simudir = maindir / 'finer_dt'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C0', linestyle='-')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
 
 # Load solution obtained on finer grid (dx=0.002).
 label = 'Finer in space'
@@ -70,7 +70,7 @@ simudir = maindir / 'finer_grid'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
 
 # Load solution obtained on coarser grid (dx=0.008).
 # label = 'Coarser in space'
@@ -78,7 +78,7 @@ plot_kwargs[label] = dict(color='C3', linestyle='--')
 # solution = get_force_coefficients(simudir)
 # mean = get_time_averaged_stats(solution, time_limits)
 # solutions[label], means[label] = solution, mean
-# plot_kwargs[label] = dict(color='gray', linestyle='-')
+# plot_kwargs[label] = dict(color='red', linestyle='-')
 
 # Load solution from Krishnan et al. (2014).
 label = 'Krishnan et al. (2014)'
@@ -86,7 +86,7 @@ datadir = maindir / 'data'
 solution = get_force_coefficients_krishnan_et_al_2014(datadir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='black', linestyle='--', linewidth=0.75)
+plot_kwargs[label] = dict(color='gray', linestyle='-', linewidth=0.75)
 
 # Print mean quantities.
 print('Case\tTime-limits\t<C_D>\t<C_L>')

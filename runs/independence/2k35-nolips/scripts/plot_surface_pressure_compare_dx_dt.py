@@ -67,13 +67,13 @@ plot_kwargs[label] = dict(color='black', linestyle='-')
 label = 'Finer in time'
 simudir = maindir / 'finer_dt'
 data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C0', linestyle='-')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
 
 # Compute surface pressure on finer grid in space.
 label = 'Finer in space'
 simudir = maindir / 'finer_grid'
 data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
 
 # Compute surface pressure on coarser grid in space.
 # label = 'Coarser in space'

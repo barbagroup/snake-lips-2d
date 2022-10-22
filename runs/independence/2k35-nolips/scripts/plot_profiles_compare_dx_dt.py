@@ -74,7 +74,7 @@ simudir = maindir / 'finer_dt'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='C0', linestyle='-')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
 
 # Get vertical profiles for solution on finer grid in space.
 label = 'Finer in space'
@@ -82,7 +82,7 @@ simudir = maindir / 'finer_grid'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
 
 # Set default font family and size for Matplotlib figures.
 pyplot.rc('font', family='serif', size=12)
@@ -94,7 +94,7 @@ for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
     ax.set_ylabel('$y/c$')
     # Add guide lines.
     for xloc in xlocs:
-        ax.axvline(xloc, color='gray', linestyle=':')
+        ax.axvline(xloc, color='gray', linestyle=':', linewidth=0.5)
     # Add vertical profiles at x locations.
     var_profiles = eval(name + '_profiles')
     for i, (label, profiles) in enumerate(var_profiles.items()):
