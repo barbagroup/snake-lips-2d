@@ -54,7 +54,7 @@ simudir = maindir / 'base'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='black', linestyle='-')
+plot_kwargs[label] = dict(color='black', linestyle='-', zorder=3)
 
 # Load solution obtained on nominal grid with smaller dt (dt=0.0002).
 label = 'Finer in time'
@@ -86,7 +86,7 @@ datadir = maindir / 'data'
 solution = get_force_coefficients_krishnan_et_al_2014(datadir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='gray', linestyle='-', linewidth=0.75)
+plot_kwargs[label] = dict(color='gray', linestyle='-', linewidth=0.8, zorder=0)
 
 # Print mean quantities.
 print('Case\tTime-limits\t<C_D>\t<C_L>')

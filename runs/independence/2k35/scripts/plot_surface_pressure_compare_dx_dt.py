@@ -96,7 +96,7 @@ ax.set_xlabel('x-coordinate')
 ax.set_ylabel('Surface pressure')
 for label, (x, p) in data.items():
     ax.plot(x, p, label=label, **plot_kwargs[label])
-ax.plot(xk, pk, color='gray', linestyle='-', linewidth=0.75,
+ax.plot(xk, pk, color='gray', linestyle='-', zorder=0,
         label='Krishnan et al. (2014)')
 ax.legend(frameon=False)
 ax.axis((-0.6, 0.6, -2.0, 1.5))

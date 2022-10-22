@@ -94,7 +94,7 @@ for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
     ax.set_ylabel('$y/c$')
     # Add guide lines.
     for xloc in xlocs:
-        ax.axvline(xloc, color='gray', linestyle=':', linewidth=0.5)
+        ax.axvline(xloc, color='gray', linestyle=':', zorder=0)
     # Add vertical profiles at x locations.
     var_profiles = eval(name + '_profiles')
     for i, (label, profiles) in enumerate(var_profiles.items()):
