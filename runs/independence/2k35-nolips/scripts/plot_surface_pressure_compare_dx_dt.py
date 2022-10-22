@@ -65,10 +65,10 @@ data[label] = get_surface_pressure(simudir)
 plot_kwargs[label] = dict(color='black', linestyle='-')
 
 # Compute surface pressure on coarser grid in space.
-label = 'Coarser in space'
-simudir = maindir / 'coarser_grid'
-data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='gray', linestyle='-')
+# label = 'Coarser in space'
+# simudir = maindir / 'coarser_grid'
+# data[label] = get_surface_pressure(simudir)
+# plot_kwargs[label] = dict(color='gray', linestyle='-')
 
 # Compute surface pressure on finer grid in space.
 label = 'Finer in space'
