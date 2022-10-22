@@ -8,7 +8,6 @@ from scipy.interpolate import RegularGridInterpolator
 import petibmpy
 
 
-
 def get_surface_pressure(simudir):
     # Set data directory.
     datadir = simudir / 'output'
@@ -59,28 +58,28 @@ data = dict()
 plot_kwargs = dict()
 
 # Compute surface pressure on base grid.
-label = 'Base'
+label = 'Base case'
 simudir = maindir / 'base'
 data[label] = get_surface_pressure(simudir)
 plot_kwargs[label] = dict(color='black', linestyle='-')
+
+# Compute surface pressure on finer grid in time.
+label = 'Finer in time'
+simudir = maindir / 'finer_dt'
+data[label] = get_surface_pressure(simudir)
+plot_kwargs[label] = dict(color='C0', linestyle='-')
+
+# Compute surface pressure on finer grid in space.
+label = 'Finer in space'
+simudir = maindir / 'finer_grid'
+data[label] = get_surface_pressure(simudir)
+plot_kwargs[label] = dict(color='C3', linestyle='--')
 
 # Compute surface pressure on coarser grid in space.
 # label = 'Coarser in space'
 # simudir = maindir / 'coarser_grid'
 # data[label] = get_surface_pressure(simudir)
 # plot_kwargs[label] = dict(color='gray', linestyle='-')
-
-# Compute surface pressure on finer grid in space.
-label = 'Finer in space'
-simudir = maindir / 'finer_grid'
-data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C0', linestyle='-')
-
-# Compute surface pressure on finer grid in time.
-label = 'Finer in time'
-simudir = maindir / 'finer_dt'
-data[label] = get_surface_pressure(simudir)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
 
 # Plot the surface pressure.
 pyplot.rc('font', family='serif', size=12)

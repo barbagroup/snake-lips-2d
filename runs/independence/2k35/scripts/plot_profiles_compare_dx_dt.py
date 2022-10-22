@@ -61,24 +61,24 @@ u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 plot_kwargs = dict()
 
 # Get vertical profiles for solution on base grid.
-label = 'Base'
+label = 'Base case'
 simudir = maindir / 'base'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='black', linestyle='-')
 
-# Get vertical profiles for solution on finer grid in space.
-label = 'Finer in space'
-simudir = maindir / 'finer_grid'
+# Get vertical profiles for solution on base grid with smaller dt.
+label = 'Finer in time'
+simudir = maindir / 'finer_dt'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='C0', linestyle='-')
 
-# Get vertical profiles for solution on base grid with smaller dt.
-label = 'Finer in time'
-simudir = maindir / 'finer_dt'
+# Get vertical profiles for solution on finer grid in space.
+label = 'Finer in space'
+simudir = maindir / 'finer_grid'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
@@ -102,7 +102,7 @@ for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
         for xloc, profile in profiles.items():
             ax.plot(xloc + profile['vals'] + x_offset, profile['y'],
                     label=label, **kwargs)
-            label=None
+            label = None
     ax.legend(frameon=False, loc='upper left', prop=dict(size=10))
     ax.axis('scaled', adjustable='box')
     ax.axis((-2.0, 6.0, -3.0, 3.0))

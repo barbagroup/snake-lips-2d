@@ -49,12 +49,28 @@ plot_kwargs = dict()
 time_limits = (50.0, 80.0)
 
 # Load solution obtained on nominal grid (dx=0.004, dt=0.0004).
-label = 'Base'
+label = 'Base case'
 simudir = maindir / 'base'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
 plot_kwargs[label] = dict(color='black', linestyle='-')
+
+# Load solution obtained on nominal grid with smaller dt (dt=0.0002).
+label = 'Finer in time'
+simudir = maindir / 'finer_dt'
+solution = get_force_coefficients(simudir)
+mean = get_time_averaged_stats(solution, time_limits)
+solutions[label], means[label] = solution, mean
+plot_kwargs[label] = dict(color='C0', linestyle='-')
+
+# Load solution obtained on finer grid (dx=0.002).
+label = 'Finer in space'
+simudir = maindir / 'finer_grid'
+solution = get_force_coefficients(simudir)
+mean = get_time_averaged_stats(solution, time_limits)
+solutions[label], means[label] = solution, mean
+plot_kwargs[label] = dict(color='C3', linestyle='--')
 
 # Load solution obtained on coarser grid (dx=0.008).
 # label = 'Coarser in space'
@@ -63,22 +79,6 @@ plot_kwargs[label] = dict(color='black', linestyle='-')
 # mean = get_time_averaged_stats(solution, time_limits)
 # solutions[label], means[label] = solution, mean
 # plot_kwargs[label] = dict(color='gray', linestyle='-')
-
-# Load solution obtained on finer grid (dx=0.002).
-label = 'Finer in space'
-simudir = maindir / 'finer_grid'
-solution = get_force_coefficients(simudir)
-mean = get_time_averaged_stats(solution, time_limits)
-solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C0', linestyle='-')
-
-# Load solution obtained on nominal grid with smaller dt (dt=0.0002).
-label = 'Finer in time'
-simudir = maindir / 'finer_dt'
-solution = get_force_coefficients(simudir)
-mean = get_time_averaged_stats(solution, time_limits)
-solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C3', linestyle='--')
 
 # Load solution from Krishnan et al. (2014).
 label = 'Krishnan et al. (2014)'
@@ -104,7 +104,7 @@ ax1.set_ylabel('Drag coefficient')
 for label, solution in solutions.items():
     ax1.plot(solution.t, solution.cd, label=label, **plot_kwargs[label])
 ax1.legend(loc='upper right', ncol=2, frameon=False)
-ax1.axis((0.0, 80.0, 0.5, 2.0))
+ax1.axis((20.0, 80.0, 0.5, 2.0))
 ax1.spines['right'].set_visible(False)
 ax1.spines['top'].set_visible(False)
 # Lift coefficient.
@@ -112,7 +112,7 @@ ax2.set_xlabel('Non-dimensional time')
 ax2.set_ylabel('Lift coefficient')
 for label, solution in solutions.items():
     ax2.plot(solution.t, solution.cl, label=label, **plot_kwargs[label])
-ax2.axis((0.0, 80.0, 0.5, 3.0))
+ax2.axis((20.0, 80.0, 0.5, 3.0))
 ax2.spines['right'].set_visible(False)
 ax2.spines['top'].set_visible(False)
 fig.tight_layout()
