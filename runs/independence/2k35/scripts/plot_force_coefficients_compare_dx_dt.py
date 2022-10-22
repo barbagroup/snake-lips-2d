@@ -20,6 +20,14 @@ def get_force_coefficients(simudir):
     return Solution(t, cd, cl)
 
 
+def get_force_coefficients_krishnan_et_al_2014(datadir):
+    """Load forces from file and return force coefficients."""
+    filepath = datadir / 'krishnan_et_al_2014_forces_2k35.txt'
+    t, fx, fy = petibmpy.read_forces(filepath)
+    cd, cl = petibmpy.get_force_coefficients(fx, fy, coeff=2.0)
+    return Solution(t, cd, cl)
+
+
 def get_time_averaged_stats(solution, limits):
     mask = numpy.where((solution.t >= limits[0]) & (solution.t <= limits[1]))
     return Solution(limits,
@@ -41,7 +49,7 @@ plot_kwargs = dict()
 time_limits = (50.0, 80.0)
 
 # Load solution obtained on nominal grid (dx=0.004, dt=0.0004).
-label = 'Nominal'
+label = 'Base'
 simudir = maindir / 'base'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
@@ -49,12 +57,12 @@ solutions[label], means[label] = solution, mean
 plot_kwargs[label] = dict(color='black', linestyle='-')
 
 # Load solution obtained on coarser grid (dx=0.008).
-label = 'Coarser in space'
-simudir = maindir / 'coarser_grid'
-solution = get_force_coefficients(simudir)
-mean = get_time_averaged_stats(solution, time_limits)
-solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='gray', linestyle='-')
+# label = 'Coarser in space'
+# simudir = maindir / 'coarser_grid'
+# solution = get_force_coefficients(simudir)
+# mean = get_time_averaged_stats(solution, time_limits)
+# solutions[label], means[label] = solution, mean
+# plot_kwargs[label] = dict(color='gray', linestyle='-')
 
 # Load solution obtained on finer grid (dx=0.002).
 label = 'Finer in space'
@@ -71,6 +79,14 @@ solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
 plot_kwargs[label] = dict(color='C3', linestyle='--')
+
+# Load solution from Krishnan et al. (2014).
+label = 'Krishnan et al. (2014)'
+datadir = maindir / 'data'
+solution = get_force_coefficients_krishnan_et_al_2014(datadir)
+mean = get_time_averaged_stats(solution, time_limits)
+solutions[label], means[label] = solution, mean
+plot_kwargs[label] = dict(color='black', linestyle='--', linewidth=0.75)
 
 # Print mean quantities.
 print('Case\tTime-limits\t<C_D>\t<C_L>')
