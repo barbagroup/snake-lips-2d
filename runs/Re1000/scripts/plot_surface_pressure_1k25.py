@@ -3,6 +3,7 @@
 import pathlib
 
 import numpy
+import pandas
 from matplotlib import pyplot
 from scipy.interpolate import RegularGridInterpolator
 
@@ -51,14 +52,24 @@ def get_surface_pressure(simudir):
     return xb_m, p_interp
 
 
+def get_le_pressure(x, p):
+    mask = numpy.where(abs(x - min(x)) < 0.05)[0]
+    x, p = x[mask], p[mask]
+    idx = numpy.argmin(p)
+    return x[idx], p[idx]
+
+
 # Set directories.
 maindir = pathlib.Path(__file__).absolute().parents[1]
 folders = ['both_lips/1k25', 'front_lip/1k25', 'back_lip/1k25', 'no_lips/1k25']
 labels = ['Both', 'Front', 'Back', 'None']
 
+df = pandas.DataFrame(columns=['Case', 'x_LE', 'p_LE'])
+
 data = dict()
 for folder, label in zip(folders, labels):
     data[label] = get_surface_pressure(maindir / folder)
+    df.loc[len(df)] = [label, *get_le_pressure(*data[label])]
 
 # Load surface pressure from Krishnan et al. (2014).
 filepath = maindir / 'data' / 'krishnan_et_al_2014_surface_pressure_1k25.txt'
@@ -67,6 +78,9 @@ with open(filepath, 'r') as infile:
 # Displace x-coordinates to align with us.
 x, _ = data[labels[0]]
 xk += abs(xk.min()) - abs(x.min())
+df.loc[len(df)] = ['Krishnan et al. (2014)', *get_le_pressure(xk, pk)]
+
+print(df.set_index('Case').round(decimals=2))
 
 # Plot the surface pressure.
 pyplot.rc('font', family='serif', size=14)
