@@ -41,28 +41,12 @@ plot_kwargs = dict()
 time_limits = (50.0, 80.0)
 
 # Load solution obtained on nominal grid (dx=0.004, dt=0.0004).
-label = 'Nominal'
+label = 'Base case'
 simudir = maindir / 'base'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
 plot_kwargs[label] = dict(color='black', linestyle='-')
-
-# Load solution obtained on coarser grid (dx=0.008).
-label = 'Coarser in space'
-simudir = maindir / 'coarser_grid'
-solution = get_force_coefficients(simudir)
-mean = get_time_averaged_stats(solution, time_limits)
-solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='gray', linestyle='-')
-
-# Load solution obtained on finer grid (dx=0.002).
-label = 'Finer in space'
-simudir = maindir / 'finer_grid'
-solution = get_force_coefficients(simudir)
-mean = get_time_averaged_stats(solution, time_limits)
-solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C0', linestyle='-')
 
 # Load solution obtained on nominal grid with smaller dt (dt=0.0002).
 label = 'Finer in time'
@@ -70,7 +54,23 @@ simudir = maindir / 'finer_dt'
 solution = get_force_coefficients(simudir)
 mean = get_time_averaged_stats(solution, time_limits)
 solutions[label], means[label] = solution, mean
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
+
+# Load solution obtained on finer grid (dx=0.002).
+label = 'Finer in space'
+simudir = maindir / 'finer_grid'
+solution = get_force_coefficients(simudir)
+mean = get_time_averaged_stats(solution, time_limits)
+solutions[label], means[label] = solution, mean
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
+
+# Load solution obtained on coarser grid (dx=0.008).
+label = 'Coarser in space'
+simudir = maindir / 'coarser_grid'
+solution = get_force_coefficients(simudir)
+mean = get_time_averaged_stats(solution, time_limits)
+solutions[label], means[label] = solution, mean
+plot_kwargs[label] = dict(color='gray', linestyle='-', zorder=1)
 
 # Print mean quantities.
 print('Case\tTime-limits\t<C_D>\t<C_L>')

@@ -44,3 +44,5 @@ if save_figure:
     figdir.mkdir(parents=True, exist_ok=True)
     filepath = figdir / f'modified_sections_aoa{round(aoa)}.pdf'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')
+    filepath = figdir / f'modified_sections_aoa{round(aoa)}.png'
+    fig.savefig(filepath, dpi=300, bbox_inches='tight')

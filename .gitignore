@@ -4,7 +4,8 @@
 **/config_shipyard/credentials.yaml
 log_shipyard
 
-figures
+**/figures/vorticity*.png
+postprocessing
 output
 snake.body
 

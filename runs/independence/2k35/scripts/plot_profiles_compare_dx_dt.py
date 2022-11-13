@@ -60,21 +60,21 @@ u_profiles, v_profiles, p_profiles = dict(), dict(), dict()
 # Initialize dict to store keyword arguments for pyplot.plot.
 plot_kwargs = dict()
 
-# Get vertical profiles for solution on nominal grid.
-label = 'Nominal'
+# Get vertical profiles for solution on base grid.
+label = 'Base case'
 simudir = maindir / 'base'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
 plot_kwargs[label] = dict(color='black', linestyle='-')
 
-# Get vertical profiles for solution on coarser grid in space.
-label = 'Coarser in space'
-simudir = maindir / 'coarser_grid'
+# Get vertical profiles for solution on base grid with smaller dt.
+label = 'Finer in time'
+simudir = maindir / 'finer_dt'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='gray', linestyle='-')
+plot_kwargs[label] = dict(color='C1', linestyle='--')
 
 # Get vertical profiles for solution on finer grid in space.
 label = 'Finer in space'
@@ -82,47 +82,55 @@ simudir = maindir / 'finer_grid'
 u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
 v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
 p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='C0', linestyle='-')
-
-# Get vertical profiles for solution on nominal grid with smaller dt.
-label = 'Finer in time'
-simudir = maindir / 'finer_grid'
-u_profiles[label] = get_time_averaged_profiles(simudir, 'u', xlocs)
-v_profiles[label] = get_time_averaged_profiles(simudir, 'v', xlocs)
-p_profiles[label] = get_time_averaged_profiles(simudir, 'p', xlocs)
-plot_kwargs[label] = dict(color='C3', linestyle='--')
+plot_kwargs[label] = dict(color='C0', linestyle='-.')
 
 # Set default font family and size for Matplotlib figures.
 pyplot.rc('font', family='serif', size=12)
 
 # Plot vertical profiles of the velocity components and pressure.
-for name, x_offset in zip(['u', 'v', 'p'], [-1.0, 0.0, 0.0]):
+for component in ('u', 'v', 'p'):
     fig, ax = pyplot.subplots(figsize=(6.0, 5.0))
-    ax.set_xlabel('x/c')
-    ax.set_ylabel('y/c')
+    ax.set_xlabel('$x/c$')
+    ax.set_ylabel('$y/c$')
     # Add guide lines.
     for xloc in xlocs:
-        ax.axvline(xloc, color='gray', linestyle=':')
+        ax.axvline(xloc, color='gray', linestyle=':', zorder=0)
     # Add vertical profiles at x locations.
-    var_profiles = eval(name + '_profiles')
-    for i, (label, profiles) in enumerate(var_profiles.items()):
+    comp_profiles = eval(component + '_profiles')
+    for label, profiles in comp_profiles.items():
         kwargs = plot_kwargs[label]
         for xloc, profile in profiles.items():
-            ax.plot(xloc + profile['vals'] + x_offset, profile['y'],
-                    label=label, **kwargs)
-            label=None
-    ax.legend(frameon=False, loc='upper left', prop=dict(size=10))
+            if component == 'u':
+                y, u = profile['y'], profile['vals']
+                ax.plot(xloc + u - 1.0, y, label=label, **kwargs)
+                text_content = '$<u> / U_\infty - 1$'
+            elif component == 'v':
+                y, v = profile['y'], profile['vals']
+                ax.plot(xloc + v, y, label=label, **kwargs)
+                text_content = '$<v> / U_\infty$'
+            else:  # p component
+                y, p = profile['y'], profile['vals']
+                ax.plot(xloc + p, y, label=label, **kwargs)
+                text_content = '$<p> / p_\infty$'
+            label = None
+
     ax.axis('scaled', adjustable='box')
-    ax.axis((-2.0, 6.0, -3.0, 3.0))
+    ax.axis((-3.0, 6.0, -3.0, 3.0))
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.legend(frameon=False, loc='upper left', fontsize=12)
+    ax.text(-2.8, -2.8, text_content, fontsize=14)
     fig.tight_layout()
+
     # Add immersed body to the plot.
     filepath = maindir / 'base' / 'snake.body'
     body = petibmpy.read_body(filepath, skiprows=1)
     ax.fill(*body, color='black', alpha=0.5)
+
     # Save figure as PNG.
     figdir = maindir / 'figures'
     figdir.mkdir(parents=True, exist_ok=True)
-    filepath = figdir / f'{name}_profiles_compare_dx_dt.png'
+    filepath = figdir / f'{component}_profiles_compare_dx_dt.png'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')
 
 pyplot.show()
