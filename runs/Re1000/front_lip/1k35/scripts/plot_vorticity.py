@@ -19,6 +19,7 @@ with open(filepath, 'r') as f:
 start, end, nsave = config['startStep'], config['nt'], config['nsave']
 dt = config['dt']
 timesteps = numpy.arange(start, end + 1, step=nsave)
+timesteps = [145000, 180000]
 
 filepath = maindir / 'snake.body'
 body = petibmpy.read_body(filepath, skiprows=1)

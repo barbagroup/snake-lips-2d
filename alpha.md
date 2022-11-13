@@ -11,7 +11,7 @@
 ### Section with both lips at $Re=2000$ and $AoA=30^o$
 
 **Table:** Comparison of the mean and RMS of the drag and lift coefficients for a section with both lips at $Re=2000$ and $AoA=30^o$ obtained with different simulation setups. Statistics are computed between $50$ and $80$ non-dimensional time units of flow simulation. Relative differences with respect to the Base case are reported between parentheses.
-| Case | $<C_D>$ | $rms(C_D)$ | $<C_L>$ | $rms(C_L)$ |
+| Case | $\left\langle C_D \right\rangle$ | $rms(C_D)$ | $\left\langle C_L \right\rangle$ | $rms(C_L)$ |
 |:-|:-:|:-:|:-:|:-:|
 | Base case | 0.960 | 0.967 | 1.524 | 1.564 |
 | Finer in time | 0.960 | 0.967 | 1.524 | 1.564 |
@@ -35,7 +35,7 @@
 ### Section with both lips at $Re=2000$ and $AoA=35^o$
 
 **Table:** Comparison of the mean and RMS of the drag and lift coefficients for a section with both lips at $Re=2000$ and $AoA=35^o$ obtained with different simulation setups. Statistics are computed between $50$ and $80$ non-dimensional time units of flow simulation. Relative differences with respect to the Base case are reported between parentheses.
-| Case | $<C_D>$ | $rms(C_D)$ | $<C_L>$ | $rms(C_L)$ |
+| Case | $\left\langle C_D \right\rangle$ | $rms(C_D)$ | $\left\langle C_L \right\rangle$ | $rms(C_L)$ |
 |:-|:-:|:-:|:-:|:-:|
 | Base case | 1.179 | 1.185 | 1.892 | 1.936 |
 | Finer in time | 1.142 (-3.1%) | 1.147 (-3.2%) | 1.789 (-5.4%) | 1.834 (-5.3%) |
@@ -63,7 +63,7 @@
 ### Section with no lips at $Re=2000$ and $AoA=35^o$
 
 **Table:** Comparison of the mean and RMS of the drag and lift coefficients for a section with no lips at $Re=2000$ and $AoA=35^o$ obtained with different simulation setups. Statistics are computed between $50$ and $80$ non-dimensional time units of flow simulation. Relative differences with respect to the base case are reported between parentheses.
-| Case | $<C_D>$ | $rms(C_D)$ | $<C_L>$ | $rms(C_L)$ |
+| Case | $\left\langle C_D \right\rangle$ | $rms(C_D)$ | $\left\langle C_L \right\rangle$ | $rms(C_L)$ |
 |:-|:-:|:-:|:-:|:-:|
 | Base case | 0.885 | 0.892 | 1.085 | 1.180 |
 | Finer in time | 0.884 (-0.1%) | 0.891 (-0.1%) | 1.084 (-0.1%) | 1.179 (-0.1%) |
