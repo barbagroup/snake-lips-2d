@@ -30,7 +30,7 @@ for i, coords in enumerate(data.values()):
     x_ref_ = x_ref + i
     ax.plot(x_ref_, y_ref, color='black', linestyle='--')
     ax.plot(x, y, color='black', linewidth=2)
-ax.axis('scaled', adjustable='box')
+ax.axis('scaled')
 ax.axis('off')
 fig.tight_layout()
 

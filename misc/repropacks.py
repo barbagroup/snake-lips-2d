@@ -62,3 +62,4 @@ if __name__ == '__main__':
     delete_repropacks(ROOTDIR / REPROPACKS_NAME)
     download_repo(GH_OWNER, GH_REPO, GH_BRANCH, ROOTDIR / REPROPACKS_NAME)
     copy_repropacks_files(ROOTDIR / 'runs', ROOTDIR / REPROPACKS_NAME / 'runs')
+    copy_repropacks_files(ROOTDIR / 'data', ROOTDIR / REPROPACKS_NAME / 'data')
