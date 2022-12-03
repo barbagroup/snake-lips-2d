@@ -83,10 +83,21 @@ az storage file download-batch --source fileshare/snake2d/Re2000/both_lips/2k35 
 | ![cl_re1000](runs/Re1000/figures/avg_lift_coefficients_vs_aoa.png) | ![cl_re2000](runs/Re2000/figures/avg_lift_coefficients_vs_aoa.png) |
 | ![cd_re1000](runs/Re1000/figures/avg_drag_coefficients_vs_aoa.png) | ![cd_re2000](runs/Re2000/figures/avg_drag_coefficients_vs_aoa.png) |
 
-**Figure:** Time-averaged drag (top) and lift (bottom) coefficients at Reynolds numbers $1000$ and $2000$ versus the angle of attack on all four sections. All averages are computed between $50$ and $80$ non-dimensional time units of flow simulation.
+**Figure:** Time-averaged lift (top) and drag (bottom) coefficients at Reynolds numbers $1000$ and $2000$ versus the angle of attack on all four sections. All averages are computed between $50$ and $80$ non-dimensional time units of flow simulation.
 
 |  |  |
 |:-:|:-:|
 | ![ld_re1000](runs/Re1000/figures/avg_lift_drag_ratio_vs_aoa.png) | ![ld_re2000](runs/Re2000/figures/avg_lift_drag_ratio_vs_aoa.png) |
 
 **Figure:** Time-averaged lift-to-drag ratio at Reynolds numbers $1000$ and $2000$ versus the angle of attack on all four sections. All averages are computed between $50$ and $80$ non-dimensional time units of flow simulation.
+
+## Reproducibility packages
+
+To reproduce the figures, download the Zenodo archive (3.6 GB), create a conda environment, and execute the `misc/process_all.py` script located in the `snake-lips-2d-repropacks` folder.
+
+```shell
+cd snake-lips-2d-repropacks
+conda env create --name=py37-snakelips-2d --file=environment.yml
+conda activate py37-snakelips-2d
+python misc/process_all.py
+```
