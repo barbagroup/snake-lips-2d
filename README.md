@@ -93,7 +93,9 @@ az storage file download-batch --source fileshare/snake2d/Re2000/both_lips/2k35 
 
 ## Reproducibility packages
 
-To reproduce the figures, download the Zenodo archive (3.6 GB), create a conda environment, and execute the `misc/process_all.py` script located in the `snake-lips-2d-repropacks` folder.
+* Olivier Mesnard, & Lorena A. Barba. (2022). Effect of the lips on the gliding performance of the Chrysopelea paradisi snake with 2D PetIBM on Azure (repro-packs). [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4732946.svg)](https://doi.org/10.5281/zenodo.7394758)
+
+To reproduce the figures, download the Zenodo archive (4.8 GB), create a conda environment, and execute the `misc/process_all.py` script located in the `snake-lips-2d-repropacks` folder.
 
 ```shell
 cd snake-lips-2d-repropacks
