@@ -13,7 +13,7 @@ GH_HEADERS = {
 }
 GH_OWNER = 'barbagroup'
 GH_REPO = 'snake-lips-2d'
-GH_BRANCH = 'dev'
+GH_BRANCH = 'main'
 REPROPACKS_NAME = f'{GH_REPO}-repropacks'
 
 
