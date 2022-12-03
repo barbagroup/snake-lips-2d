@@ -11,7 +11,7 @@ GH_HEADERS = {
     'Accept': 'application/vnd.github.v3+json',
     'Authorization': f'Bearer {os.environ.get("GH_TOKEN")}'
 }
-GH_OWNER = 'mesnardo'
+GH_OWNER = 'barbagroup'
 GH_REPO = 'snake-lips-2d'
 GH_BRANCH = 'dev'
 REPROPACKS_NAME = f'{GH_REPO}-repropacks'
