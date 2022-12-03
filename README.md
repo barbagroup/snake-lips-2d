@@ -93,7 +93,7 @@ az storage file download-batch --source fileshare/snake2d/Re2000/both_lips/2k35 
 
 ## Reproducibility packages
 
-To reproduce the figures, download the Zenodo archive (5 GB), create a conda environment, and execute the `misc/process_all.py` script located in the `snake-lips-2d-repropacks` folder.
+To reproduce the figures, download the Zenodo archive (3.6 GB), create a conda environment, and execute the `misc/process_all.py` script located in the `snake-lips-2d-repropacks` folder.
 
 ```shell
 cd snake-lips-2d-repropacks
